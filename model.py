@@ -3,7 +3,7 @@ from data_prep import DataPreprocessor
 
 
 class CharTrigramModel:
-    def __init__(self, seed: int = 2147483647):
+    def __init__(self, seed: int | None = 2147483647):
         self.seed = seed
         self.weights = torch.randn((729, 27), generator=torch.Generator().manual_seed(self.seed), requires_grad=True)
 
