@@ -18,3 +18,23 @@ class DataPreprocessor:
         dev_words, test_words = train_test_split(temp_words, test_size=dev_test_split, random_state=42)
 
         return train_words, dev_words, test_words
+
+    def prepare_xs_ys(self):
+        chars = sorted(list(set(''.join(self.train_words))))
+
+        char_to_int = {s: i + 1 for i, s in enumerate(chars)}
+        char_to_int['.'] = 0
+        # int_to_char seems to be redundant. See if you can remove it safely
+        int_to_char = {i: s for s, i in char_to_int.items()}
+
+        two_chars = set()
+        for c1 in chars + ["."]:
+            for c2 in chars + ["."]:
+                two_chars.add(c1 + c2)
+
+        two_chars = sorted(list(two_chars))
+
+        char2_to_int = {s: i for i, s in enumerate(two_chars)}
+        int_to_char2 = {i: s for i, s in enumerate(two_chars)}
+
+    
