@@ -16,7 +16,7 @@ class DataPreprocessor:
 
         self._prep_conversion()
 
-    def split_data(self, train_split: float, dev_test_split: float):
+    def split_data(self, train_split: float = 0.8, dev_test_split: float = 0.5):
         train_words, temp_words = train_test_split(self.data, train_size=train_split, random_state=42)
         dev_words, test_words = train_test_split(temp_words, test_size=dev_test_split, random_state=42)
 
